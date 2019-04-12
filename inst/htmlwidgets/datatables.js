@@ -969,8 +969,8 @@ HTMLWidgets.widget({
             }
           }
           changeInput('rows_selected', selectedRows());
-          if (length(deselectedRows) > 0) {
-            changeInput('row_last_clicked', );
+          if (deselectedRows.length > 0) {
+            changeInput('row_last_clicked', null);
             var lastClickedRow;
           } else {
             changeInput('row_last_clicked', serverRowIndex(thisRow.index()));
