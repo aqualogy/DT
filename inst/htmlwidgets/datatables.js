@@ -914,6 +914,7 @@ HTMLWidgets.widget({
           return selected1;
         }
         table.on('mousedown.dt', 'tbody tr', function(e) {
+          var deselectedRows = [];
           var $this = $(this), thisRow = table.row(this);
           if (selMode === 'multiple') {
             if (e.shiftKey && lastClickedRow !== undefined) {
@@ -962,10 +963,14 @@ HTMLWidgets.widget({
           if (server && !$this.hasClass(selClass)) {
             var id = DT_rows_current[thisRow.index()];
             // remove id from selected1 since its class .selected has been removed
-            if (inArray(id, selected1)) selected1.splice($.inArray(id, selected1), 1);
+            if (inArray(id, selected1)) {
+              selected1.splice($.inArray(id, selected1), 1);
+              deselectedRows.push(id);
+            }
           }
           changeInput('rows_selected', selectedRows());
           changeInput('row_last_clicked', serverRowIndex(thisRow.index()));
+          changeInput('rows_last_deselected', deselectedRows);
           lastClickedRow = serverRowIndex(thisRow.index());
         });
         changeInput('rows_selected', selected1);
