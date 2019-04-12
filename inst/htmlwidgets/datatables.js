@@ -969,7 +969,11 @@ HTMLWidgets.widget({
             }
           }
           changeInput('rows_selected', selectedRows());
-          changeInput('row_last_clicked', serverRowIndex(thisRow.index()));
+          if (length(deselectedRows) > 0) {
+            changeInput('row_last_clicked', null);
+          } else {
+            changeInput('row_last_clicked', serverRowIndex(thisRow.index()));
+          }
           changeInput('rows_last_deselected', deselectedRows);
           lastClickedRow = serverRowIndex(thisRow.index());
         });
