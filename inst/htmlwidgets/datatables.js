@@ -971,11 +971,12 @@ HTMLWidgets.widget({
           changeInput('rows_selected', selectedRows());
           if (length(deselectedRows) > 0) {
             changeInput('row_last_clicked', null);
+            var lastClickedRow;
           } else {
             changeInput('row_last_clicked', serverRowIndex(thisRow.index()));
+            lastClickedRow = serverRowIndex(thisRow.index());
           }
           changeInput('rows_last_deselected', deselectedRows);
-          lastClickedRow = serverRowIndex(thisRow.index());
         });
         changeInput('rows_selected', selected1);
         var selectRows = function() {
